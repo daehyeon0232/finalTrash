@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+	<title>Trash</title>
+</head>
+<style type="text/css">
+	#monitor{width: 100px; height: 40px; background: green; position: fixed; color: white; text-align: center; line-height: 40px; right: 0px; z-index: 2; opacity: 0}
+	*{margin: 0px; padding: 0px; font-family: 'Source Sans Pro', sans-serif;}
+	body{background: #efeae3; height: 6000px; overflow: hidden}
+	h1{font-size: 3em; font-weight: 900}
+	h3{padding: 20px 0 0 0; line-height: 35px; font-weight: 400}
+	#part1{position: relative; left: 50%; transform: translateX(-50%); width: 1500px; height: 2700px; transition: all 1s}
+	#container1{position: absolute; top: 450px; left: 150px; width: 750px; height: 300px; text-align: left; transition: all 1s}
+	#graph1{position: absolute; left: 150px; top: 670px; width: 750px; height: 450px; opacity: 0; transition: all 1s;}
+	#graph1 h2{font-size: 1.7em; padding: 0 0 20px 0;}
+	#graph1 img{position: relative; left: 0px; width: 750px;}
+	#container2{position: absolute; top: 1600px; right: 150px; width: 450px; transition: all 1s}
+	
+
+	#part1 #can1{position: absolute; top: 100px; left: -50px; width: 250px; z-index: 1;}
+	#part1 #can2{position: absolute; right: 150px; top: -30px; width: 170px; transform: rotate(-40deg); opacity: 0.4; filter: blur(4px);}
+	#part1 #can3{position: absolute; left: -200px; top: 950px; width: 200px; transform: rotate(20deg); opacity: 0.6; filter: blur(4px); transition: all 2s}
+	#part1 #can4{position: absolute; right: 700px; top: 1150px; width: 120px; filter: blur(0px); opacity: 0.9}
+	#part1 #paper1{position: absolute; right: -350px; top: 400px; width: 750px; filter: blur(4px); transition: all 2s}
+	#part1 #paper2{position: absolute; right: 300px; top: 400px; width: 550px; filter: blur(4px); z-index: -1; opacity: 0.2; transition: all 0.5s}
+	#part1 #paper3{position: absolute; left: 50px; top: 1000px; width: 450px; filter: blur(4px); z-index: -1; opacity: 0.2; transition: all 2s}
+	#part1 #bongi1{position: absolute; left: -50px; top: -550px; width: 750px;opacity: 0.4; filter: blur(4px); transition: all 1s}
+	#part1 #bongi2{position: absolute; right: 100px; bottom: -300px; width: 500px; transform: rotate(0deg); opacity: 1.0; filter: blur(4px); z-index: 1}
+	#part1 #bongi3{position: absolute; right: -400px; bottom: -300px; width: 800px; transform: rotate(0deg); opacity: 1.0; filter: blur(4px); z-index: 1}
+	#part1 #glass1{position: absolute; left: -150px; top: 500px; width: 230px; opacity: 1.0; filter: blur(2px); transition: all 1s}
+	#part1 #glass2{position: absolute; left: 230px; top: 800px; width: 250px; opacity: 0.4; filter: blur(4px); z-index: -1; transition: all 1s}
+	#part1 #pet1{position: absolute; right: -30px; top: 450px; width: 450px; opacity: 1.0; filter: blur(0px);}
+	#part1 #pet2{position: absolute; right: 350px; top: -200px; width: 220px; opacity: 0.8; filter: blur(1px); transition: all 1s}
+	#part1 #cup1{position: absolute; left: -200px; top: 1250px; width: 700px; opacity: 1.0; filter: blur(0px);}
+	#part1 #cup2{position: absolute; right: -250px; top: 50px; width: 500px; transform: rotate(0deg); opacity: 0.6; filter: blur(2px); z-index: -1; transition: all 2s}
+	#part1 #full1{position: absolute; left: -600px; bottom: -200px; width: 1100px; transform: rotate(0deg); opacity: 0.6; filter: blur(2px); z-index: -1}
+	#part1 #full2{position: absolute; left: -300px; bottom: -200px; width: 1200px; transform: rotate(0deg); opacity: 1.0; filter: blur(0px);}
+	#part1 #full3{position: absolute; right: -500px; bottom: -400px; width: 1600px; transform: scaleX(-1); opacity: 0.4; filter: blur(5px); z-index: -1}
+
+	#container3{position: absolute; top: 300px; left: 300px; width: 600px; color: white;}
+	#container4{position: absolute; top: 1050px; width: 600px; right: 300px; color: white;}
+	#cover1{position: absolute; width: 1800px; height: 1600px; background: #221d16; opacity: 0.8; left: 50%; transform: translateX(-50%); transition: all 2s}
+	#part2{position: relative; left: 50%; transform: translateX(-50%); width: 1800px; height: 1600px; overflow: hidden; transition: all 1s}
+	#part2 #recycle1{position: absolute; top: 230px; right: 150px; width: 500px; transform: rotate(0deg); opacity: 1.0; filter: blur(0px); z-index: 1; transition: all 2s}
+	#part2 #pole{position: absolute; top: 400px; left: -50px; width: 650px; transition: all 1s}
+	#tag_box{position: absolute; top: 100px; right: 380px; width: 400px; height: 200px; z-index: 2; transition: all 2s}
+	#tag_box h2{position: absolute; padding: 10px; width: 110px; text-align: center;}
+	#tag1{position: absolute; top: 0px; left: 300px; width: 130px; height: 50px; background: white; border: solid 5px black;}
+	#tag1 article{position: absolute; top: 55px; left: 80px; width: 10px; height: 140px; background: black;}
+	#tag2{position: absolute; top: 60px; left: 100px; width: 130px; height: 50px; background: white; border: solid 5px black; z-index: 3}
+	#tag2_cover{position: absolute; top: 60px; left: 100px; width: 130px; height: 50px; background: white; border: solid 5px black;}
+	#tag2_cover article{position: absolute; top: 0px; left: 160px; width: 10px; height: 100px; background: black; transform: rotate(-50deg)}
+	#tag3{position: absolute; top: 270px; left: 50px; width: 130px; height: 50px; background: white; border: solid 5px black; z-index: 2}
+	#tag3 article{position: absolute; top: 30px; left: 130px; width: 60px; height: 10px; background: black}
+
+	#container5{position: absolute; top: 150px; width: 600px; right: 150px;}
+	#container6{position: absolute; top: 550px; width: 900px; left: 0px; transition: all 1s}
+	#container6 img{position: relative; width: 900px; padding: 20px 0 0 0;}
+	#container6 h1{padding: 50px 0 0 0;}
+	#part3{position: relative; left: 50%; transform: translateX(-50%); width: 1500px; height: 1600px;}
+	#part3 #where{position: absolute; top: 0px; left: -30px; width: 600px; transition: 1s}
+	#part3 #full_trash{position: absolute; top: 1070px; right: -200px; width: 650px; transition: all 2s}
+	#part3 #full_tag{position: absolute; top: 900px; right: 150px; width: 200px; transition: all 0.2s}
+
+	#container7{position: absolute; top: 400px; left: 200px; width: 600px;}
+	#container8{position: absolute; top: 400px; right: 200px; width: 600px;}
+	#title{position: absolute; top: 150px; left: 50%; transform: translateX(-50%);}
+	#container9{position: absolute; top: 1100px; left: 50%; transform: 
+		translateX(-50%); width: 800px; height: 300px; line-height: 45px; text-align: center}
+	#container10{position: absolute; top: 0px; left: 50%; transform: 
+		translateX(-50%); font-weight: 200; width: 1000px;line-height: 45px; text-align: center; animation: end 4s forwards alternate; font-size: 2.5em; color: white; opacity: 0.0}
+	@keyframes end{
+		0%{top: 6440px; opacity: 0.0;}
+		40%{top: 6530px; opacity: 1.0;}
+		80%{top: 6530px; opacity: 1.0;}
+		100%{top: 6550px; opacity: 0.0;}
+	}
+	@keyframes end2{
+		0%{top: 6440px; opacity: 0.0;}
+		40%{top: 6530px; opacity: 1.0;}
+		100%{top: 6530px; opacity: 1.0;}
+	}
+	#cover2{position: absolute; left: 50%; transform: translateX(-50%); width: 1800px; height: 1200px; background: black; z-index: -1}
+	#part4{position: relative; left: 50%; transform: translateX(-50%); width: 1800px; height: 1200px; color: white;}
+	#part4 h1{font-size: 2.5em; font-weight: 200;}
+	#festival_box{position: absolute; top: 0px width: 1800px; z-index: 0;}
+	#festival_photo{position: absolute; top: 0px; width: 1800px; transition: all 2s; opacity: 0.2; filter: blur(4px);}
+	#url{position: absolute; left: 150px; bottom: 70px; animation: url1 2s forwards; opacity: 0.0; animation-delay: 17s; z-index: 1;}
+	#url h2{position: absolute; top: -20px; font-weight: 400}
+	#url h3{line-height: 25px; font-size: 0.9em; font-weight: 200;}
+	@keyframes url1{
+		0%{opacity: 0.0}
+		100%{opacity: 0.85}
+	}
+
+</style>
+
+<body>
+	<div id="container10">
+		</div>
+		<div id="url">http://www.seoul.co.kr/news/newsView.php?id=20160511009005 (쓰레기 양)<br>
+		http://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0002329282 (캠퍼스 낭만을 지켜주는 사람들)<br>
+		http://news.jtbc.joins.com/article/article.aspx?news_id=NB11706961 (쓰레기 명시가 안되있다.)<br>
+		http://www.seoul.co.kr/news/newsView.php?id=20161010010034 (불꽃놀이축제, 분리수거)<br>
+		https://www.youtube.com/watch?v=lAhcUk5cEao (무단투기)<br>
+		https://www.insight.co.kr/news/121552 (무단투기)<br>
+		http://news.zum.com/articles/29984918 (쓰레기통 개수)<br>
+	</div>
+	<div id="monitor"></div>
+	<div id="part1">
+		<div id="container1">
+			<h1>화려한 축제의 이면, 쓰레기</h1>
+			<h3>축제 후, 많은 쓰레기는 화려한 축제와는 다르게 축제의 부정적인 모습으로 항상 문제로 대두됐다. 100만명이 넘는 사람들이 방문하는 서울세계불꽃축제에서는 축제 기간동안 무분별하게 버려진 쓰레기를 처리하는데 드는 비용이 한 해 평균 1,554만원의 쓰레기 처리 비용이 발생했다. 매년 축제 후 한강공원을 뒤덮은 쓰레기더미가 시민의식의 부재로 지적되었다.</h3>
+		</div>
+		<div id="graph1">
+			<h2>한강시민공원 월별 쓰레기 처리량</h2>
+			<img src="./img/graph.png">
+			<h3>그래프를 보면 알 수 있듯이 축제, 행사 등이 적은 1-2월 달에는 쓰레기 양이 적지만, 날씨가 풀리며 축제가 많은 5-8월에는 쓰레기 처리량이 많은 것을 알 수 있다.</h3>
+		</div>
+		<div id="container2">
+			<h1>왜 문제야?</h1>
+			<h3>하지만, 사람들이 모이면 쓰레기가 많이 발생하는 것은 당연하다. 예를 들어, 위 사례처럼 100만명이나 되는 많은 사람들이 모였으니 많은 쓰레기가 발생할 수 밖에 없다. 그럼에도 불구하고 왜 이게 문제가 될까?</h3>
+		</div>
+		<img src="./img/can1.png" id="can1">
+		<img src="./img/can1(dark).png" id="can2">
+		<img src="./img/can1(dark).png" id="can3">
+		<img src="./img/can2.png" id="can4">
+		<img src="./img/pet.png" id="pet1">
+		<img src="./img/pet(black).png" id="pet2">
+		<img src="./img/paper(white).png" id="paper1">
+		<img src="./img/paper(black).png" id="paper2">
+		<img src="./img/paper(black).png" id="paper3">
+		<img src="./img/bongi(black)2.png" id="bongi1">
+		<img src="./img/bongi(white).png" id="bongi2">
+		<img src="./img/bongi(white).png" id="bongi3">
+		<img src="./img/glass(black).png" id="glass1">
+		<img src="./img/glass(black)2.png" id="glass2">
+		<img src="./img/cup.png" id="cup1">
+		<img src="./img/cup(black).png" id="cup2">
+		<img src="./img/full_trash(black).png" id="full1">
+		<img src="./img/full_trash.png" id="full2">
+		<img src="./img/full_trash(white).png" id="full3">
+	</div>
+	
+	<div id="cover1"></div>
+	<div id="part2">
+		<div id="tag_box">
+			<div id="tag1">
+				<h2>유리</h2>
+				<article>
+				</article>
+			</div>
+			<div id="tag2">
+				<h2>페트병</h2>
+			</div>
+			<div id="tag2_cover">
+				<article>
+				</article>
+			</div>
+			
+			<div id="tag3">
+				<h2>종이</h2>
+				<article>
+				</article>
+			</div>
+		</div>
+		<img src="./img/seperate.png" id="recycle1">
+		<div id="container3">
+			<h1>분리수거</h1>
+			<h3>가장 큰 문제 중 하나는 쓰레기가 분리수거가 안된 상태로 버려져있는 것이다. 분리수거가 안된 쓰레기의 경우, 나중에 분리수거 과정을 추가로 거치는데 축제같은 경우는 워낙 쓰레기양이 많아서 쓰레기를 수거하고 분리수거 하는데만 몇 칠이 걸린다고 하는데 분리수거만 잘되있어도 훨씬 쓰레기를 치우기 수월하다고 한다.</h3>
+		</div>
+		<img src="./img/pole.png" id="pole">
+		<div id="container4">
+			<h1>무단투기</h1>
+			<h3>또 다른 문제 중 하나는 무단투기이다. 자신이 먹고 놀았던 자리에 쓰레기를 그대로 두고 가는 것도 문제이지만, 쓰레기 배출 장소가 아닌 곳 구석이나 일부 전봇대에 버리는 것도 문제가 된다.</h3>
+		</div>
+	</div>
+	<div id="part3">
+		<img src="./img/where.png" id="where">
+		<img src="./img/full.png" id="full_tag">
+		<img src="./img/full_trash.png" id="full_trash">
+		<div id="container5">
+			<h1>시민의식만이 문제?</h1>
+			<h3>완전한 답은 아닌 것 같다.
+			서울불꽃축제의 한 기사에서는 "음식물 쓰레기는 분리 배출 바랍니다"라고 적힌 입간판이 있었지만, 전체 높이가 사람 키와 엇비슷한 2m에 불과해 인파에 가려 안내문이 안 보이거나 입간판 자체가 사람에 밀려 땅에 넘어져 있기 일쑤였다고 하며 인파에 가려 쓰레기통이 어딨는지 모르는 사람들이 대부분이고 쓰레기통의 갯수도 규모에 비해 상당히 적었다. 심지어 있는 쓰레기통도 대부분 꽉찬 상태여서 대다수가 분리배출을 하기에는 힘든 상황이였다고 한다.
+			</h3>
+		</div>
+		<div id="container6">
+			<img src="./img/graph2.png">
+			<h3>위 그래프는 서울시 쓰레기통 설치 현황으로 축제와는 별개일 수 있지만, 과거 1995년에는 7000여개가 있었지만, 현재는 5000여개이다. 여전히 쓰레기통이 부족하다는 민원이 들어오지만, 관리가 힘들다는 등의 이유로 설치에 소극적이다.<h3>
+			<h1>어떻게 해결해야할까?</h1>
+			<h3>
+			이러한 요소가 쓰레기를 제대로 버리지않는 사람들의 낮은 시민의식에 대한 변명이 될 수는 없지만, 그래도 사람들 탓만 하기에는 정책적으로 아직 부족한 점이 있는 것 같다.
+			깨끗한 거리를 만들기 위해서는 시민의식의 개선과 축제 주최측의 쓰레기 관리를 위한 정책 등이 모두 개선되어야만 쓰레기 문제가 해소 될 것이라 생각된다.
+			</h3>
+		</div>
+	</div>
+	<div id="cover2">
+	</div>
+	<div id="part4">
+		<div id="festival_box">
+			<img src="./img/festival.jpg" id="festival_photo">
+		</div>
+		<div id="url">
+			<h2>참고자료 출처</h2>
+			<h3>http://www.seoul.co.kr/news/newsView.php?id=20160511009005 (월별 쓰레기 양)<br>
+			http://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0002329282 (캠퍼스 낭만을 지켜주는 사람들)<br>
+			http://news.jtbc.joins.com/article/article.aspx?news_id=NB11706961 (쓰레기통은 어디)<br>
+			http://www.seoul.co.kr/news/newsView.php?id=20161010010034 (불꽃놀이축제, 분리수거)<br>
+			https://www.youtube.com/watch?v=lAhcUk5cEao (무단투기)<br>
+			https://www.insight.co.kr/news/121552 (무단투기)<br>
+			http://news.zum.com/articles/29984918 (쓰레기통 개수)</h3>		
+		</div>
+	</div>
+	<script>
+
+		window.onwheel = function(e){
+			var scroll = 70;
+			if(e.deltaY >0){
+				window.scrollBy(0, scroll);
+			}else{
+				window.scrollBy(0, -scroll);
+			}
+			var ratio = window.pageYOffset / 2600;
+			parallax("can1", 400);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px) ";
+			}
+			parallax("can3", 2400);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px) ";
+			}
+			parallax("can4", 1000);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px) ";
+			}
+			parallax("pet1", 1000);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("pet2", 2200);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("paper1", 2500);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("paper2", 2000);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("paper3", 2200);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("cup1", 2000);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("cup2", 2400);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("cup2", 1400);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("bongi1", 2500);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("glass1", 1400);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("glass2", 2300);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+
+			parallax("container1", 2500);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("graph1", 2400);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("container2", 2500);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+			parallax("pole", 2200);
+			function parallax(id, distance){
+				var id_d = window.pageYOffset - distance*ratio;
+				var t = document.getElementById(id);
+				t.style.transform = "translateY("+ id_d +"px)";
+			}
+		}
+		window.onscroll = function(){
+			var t= document.documentElement.scrollTop;
+			monitor.innerHTML = t + "px";
+			if(250 < t){	
+				container1.style.opacity = "0"
+				cup2.style.opacity = "0";
+				glass2.style.opacity = "0"
+				can3.style.opacity = "0"
+			}else{
+				container1.style.opacity = "1.0"
+				cup2.style.opacity = "0.6";
+				glass2.style.opacity = "0.4"
+				can3.style.opacity = "0.6"
+			}
+			if(900 < t){
+				paper1.style.opacity = "0"
+				glass1.style.opacity = "0"
+			}else{
+				paper1.style.opacity = "1.0"
+				glass1.style.opacity = "1.0"
+			}
+			if(1000 < t){
+				container2.style.opacity = "1.0"
+			}else{
+				container2.style.opacity = "0.0"
+			}
+
+			if(250 < t && t <750){
+				graph1.style.opacity = "1.0"
+			}
+			else{
+				graph1.style.opacity = "0"
+			}
+			if(2300 < t){
+				part1.style.filter = "blur(4px)"
+				can4.style.opacity = "0.0"
+				recycle1.style.filter = "blur(0px)"
+				tag_box.style.opacity = "1.0"
+			}
+			else{
+				part1.style.filter = "blur(0px)"
+				can4.style.opacity = "1.0"
+				recycle1.style.filter = "blur(5px)"
+				tag_box.style.opacity = "0.0"
+			}
+			if(3000 < t){
+				pole.style.opacity = "1.0"
+			}
+			else{
+				pole.style.opacity = "0.0"
+			}
+			if(3800 < t){
+				part2.style.filter = "blur(6px)"
+			}
+			else{
+				part2.style.filter = "blur(0px)"
+			}
+			if(3900 < t){
+				where.style.left = "-30px"
+				where.style.opacity = "1.0"
+			}
+			else{
+				where.style.left = "-200px"
+				where.style.opacity = "0"
+			}
+			if(4300 < t){
+				container6.style.opacity = "1.0"
+			}
+			else{
+				container6.style.opacity = "0"
+			}
+			if(4500 < t){
+				full_trash.style.right = "-200px"
+				full_trash.style.filter = "blur(0px)"
+				full_trash.style.opacity = "1"
+			}
+			else{
+				full_trash.style.right = "-400px"
+				full_trash.style.filter = "blur(5px)"
+				full_trash.style.opacity = "0.4"
+			}
+			if(4700 < t){
+				full_tag.style.opacity = "1"
+			}
+			else{
+				full_tag.style.opacity = "0"
+			}
+			
+			if(5900 < t){
+				festival_photo.style.opacity = "0.4"
+			}
+			else{
+				festival_photo.style.opacity = "0.0"
+
+				
+			}
+			var text = "축제를 즐기는 것도 좋지만,@즐겼던 장소는 깨끗이 정리하셨나요?@즐거운 축제를 위해서 뒤에서 고생하시는 분들이 있습니다.@저희가 버리기 전에 한번 더 생각한다면@그분들의 노고가 덜어질 수 있습니다.@저희 같이 노력해봐요!";
+				var newText = text.split("@");
+			if(5900 < t){
+				container10.style.animationPlayState = "running";
+			for(var i=0; i< newText.length; i++){
+				var a = document.getElementById("container10");
+				var b = a.cloneNode(true);
+				b.innerHTML = newText[i];
+				if(4 < i){
+					b.style.animation = "end2 4s forwards";
+				}
+				else{
+					b.style.animation = "end 4s forwards";
+				}
+				b.style.animationDelay = i*3 +"s";
+				document.body.appendChild(b);
+			}	
+			}else{
+				container10.style.animationPlayState = "paused";
+			}
+		}
+	</script>
+	
+	
+
+</body>
+</html>
